@@ -15,9 +15,15 @@ class Customer(models.Model):
     phone = models.CharField(max_length=15)
     fidelity_points = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.name
+
 
 class Genre(models.Model):
     name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
 
 
 class Book(models.Model):
@@ -27,12 +33,18 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     register_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, PROTECT)
     purchase_date = models.DateTimeField(auto_now_add=True)
     total = models.DecimalField(max_digits=6, decimal_places=2)
     purchased_books = models.ManyToManyField(Book, through='OrderBook')
+
+    def __str__(self):
+        return f"Order #{self.id}"
 
 
 class OrderBook(models.Model):
