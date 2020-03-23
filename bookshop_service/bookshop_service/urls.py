@@ -24,7 +24,7 @@ router.register('customers', views.CustomerAPI)
 router.register('genres', views.GenreAPI)
 router.register('books', views.BookAPI)
 router.register('orders', views.OrderAPI)
-router.register('orderbooks', views.OrderBookAPI)
+router.register('orderbook', views.OrderBookQuantityAPI)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

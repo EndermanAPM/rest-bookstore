@@ -25,19 +25,19 @@ class BookSerializer(HyperlinkedModelSerializerWithId):
         fields = "__all__"
 
 
-class OrderBookSerializer(HyperlinkedModelSerializerWithId):
+class OrderBookQuantitySerializer(HyperlinkedModelSerializerWithId):
     class Meta:
-        model = OrderBook
+        model = OrderBookQuantity
         fields = "__all__"
         # exclude = ("order", )
 
-class OrderlessOrderBookSerializer(HyperlinkedModelSerializerWithId):
+class OrderlessOrderBookQuantitySerializer(HyperlinkedModelSerializerWithId):
     class Meta:
-        model = OrderBook
+        model = OrderBookQuantity
         exclude = ("order", )
 
 class OrderSerializer(HyperlinkedModelSerializerWithId):
-    purchased_books = OrderlessOrderBookSerializer(many=True)
+    purchased_books = OrderlessOrderBookQuantitySerializer(many=True)
 
     class Meta:
         model = Order

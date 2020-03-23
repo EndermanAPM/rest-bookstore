@@ -24,7 +24,7 @@ class OrderAPI(viewsets.ModelViewSet):
     queryset = Order.objects.all()
 
 
-class OrderBookAPI(viewsets.ModelViewSet):
-    serializer_class = OrderBookSerializer
-    queryset = OrderBook.objects.all()
+class OrderBookQuantityAPI(viewsets.ModelViewSet):
+    serializer_class = OrderBookQuantitySerializer
+    queryset = OrderBookQuantity.objects.all()
 

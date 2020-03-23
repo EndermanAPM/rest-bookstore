@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='order',
             name='purchased_books',
-            field=models.ManyToManyField(through='bookshop.OrderBook', to='bookshop.Book'),
+            field=models.ManyToManyField(through='bookshop.OrderBookQuantity', to='bookshop.Book'),
         ),
         migrations.AddField(
             model_name='book',

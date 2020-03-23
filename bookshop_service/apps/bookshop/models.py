@@ -46,7 +46,7 @@ class Order(models.Model):
         return f"Order #{self.id}"
 
 
-class OrderBook(models.Model):
+class OrderBookQuantity(models.Model):
     order = models.ForeignKey(Order, CASCADE, "purchased_books")
     book = models.ForeignKey(Book, CASCADE)
     quantity = models.IntegerField()
