@@ -41,13 +41,12 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, PROTECT)
     purchase_date = models.DateTimeField(auto_now_add=True)
     total = models.DecimalField(max_digits=6, decimal_places=2)
-    purchased_books = models.ManyToManyField(Book, through='OrderBook')
 
     def __str__(self):
         return f"Order #{self.id}"
 
 
 class OrderBook(models.Model):
-    order = models.ForeignKey(Order, CASCADE)
+    order = models.ForeignKey(Order, CASCADE, "purchased_books")
     book = models.ForeignKey(Book, CASCADE)
     quantity = models.IntegerField()
