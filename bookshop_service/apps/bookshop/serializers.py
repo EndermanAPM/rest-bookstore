@@ -31,23 +31,28 @@ class OrderBookSerializer(HyperlinkedModelSerializerWithId):
         fields = "__all__"
         # exclude = ("order", )
 
-class OrderBookSummarySerializer(HyperlinkedModelSerializerWithId):
+class OrderlessOrderBookSerializer(HyperlinkedModelSerializerWithId):
     class Meta:
         model = OrderBook
         exclude = ("order", )
 
 class OrderSerializer(HyperlinkedModelSerializerWithId):
-    purchased_books = OrderBookSummarySerializer(many=True)
+    purchased_books = OrderlessOrderBookSerializer(many=True)
 
     class Meta:
         model = Order
         fields = "__all__"
 
     def create(self, validated_data):
-        choice_validated_data = validated_data.pop('purchased_books')
+        validated_purchased_books = validated_data.pop('purchased_books')
         order = Order.objects.create(**validated_data)
-        choice_set_serializer = self.fields['purchased_books']
-        for each in choice_validated_data:
+        book_serializer = self.fields['purchased_books']
+        for each in validated_purchased_books:
             each['order'] = order
-        choices = choice_set_serializer.create(choice_validated_data)
+        choices = book_serializer.create(validated_purchased_books)
+
+        customer = Customer.objects.get(pk=order.customer_id)
+        customer.fidelity_points += 1
+        customer.save()
         return order
+
