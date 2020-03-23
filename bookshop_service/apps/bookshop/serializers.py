@@ -27,7 +27,7 @@ class OrderBookSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    purchased_books = OrderBookSerializer(many=True)
+    # purchased_books = OrderBookSerializer(source="orderbook_set", many=True)
     class Meta:
         model = Order
-        fields = "__all__"
+        exclude = ('purchased_books',)
