@@ -37,6 +37,16 @@ class OrderAPI(OrderModelViewSet):
     serializer_class = OrderSerializer
     queryset = Order.objects.all()
     filterset_fields = ['status']
+    detail_serializer_class = OrderDetailSerializer
+
+    def get_serializer_class(self):
+        """
+        Determins which serializer to user `list` or `detail`
+        """
+        if self.action == 'retrieve':
+            if hasattr(self, 'detail_serializer_class'):
+                return self.detail_serializer_class
+        return super().get_serializer_class()
 
 
 class OrderBookQuantityAPI(OrderModelViewSet):
