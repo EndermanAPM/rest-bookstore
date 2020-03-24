@@ -44,8 +44,17 @@ class Book(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, PROTECT)
-    purchase_date = models.DateTimeField(auto_now_add=True)
+    STATUS = (
+        ('NEW', 'New Order'),
+        ('PAID', 'Paid'),
+    )
+    status = models.CharField(
+        max_length=32,
+        choices=STATUS,
+        default='NEW',
+    )
     total = models.DecimalField(max_digits=6, decimal_places=2)
+    purchase_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Order #{self.id}"
