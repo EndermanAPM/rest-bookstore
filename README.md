@@ -1,4 +1,5 @@
 ![Python application](https://github.com/EndermanAPM/rest-bookstore/workflows/Python%20application/badge.svg)
+[![Updates](https://pyup.io/repos/github/EndermanAPM/rest-bookstore/shield.svg?token=bbea8f64-35d8-4063-b999-85ca5369532b)](https://pyup.io/repos/github/EndermanAPM/rest-bookstore/)
 
 # Notas:  
 Changed 1:n book-order relationship to n:m to allow multiple books on a single purchase.
@@ -6,8 +7,10 @@ Also added status, order total and date to order. (VAT ignored)
 Stock merged into books because it doesn't provide additional fields to books.  
 The Order endpoint returns and allows to post the nested OrderBook(s).  
 This api is in no way production ready, starting with secret management, no logging, production server,
-persistence of database, debug mode on.
-
+persistence of database, debug mode on.  
+CDN will cache almost nothing (because most of the content is dynamic) but CF Argo, Automatic SSL certs, DDOS protection,
+ etc are nice to have.
+   
 ## Additional features:
 - Git/Github repository
 - requirements file
@@ -20,15 +23,18 @@ persistence of database, debug mode on.
 - Hyperlinked api
 - dockerization
 - Ci (images being build and tested every commit by Github actions)
+- CDN (Cloudflare)
+- SSL
+
 
 ## Missing features
 - Calculated purchase total
-- Proper logging
+- Logging and code comments
 
 ## Todo:
 - tests
 - pyup
-- ssl?
+
 
 ### Una base de datos para una librería con las tablas:
 - usuarios(id,nombre,edad,fecha_registro,telefono,puntos)
