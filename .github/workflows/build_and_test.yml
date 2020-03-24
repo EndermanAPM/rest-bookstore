@@ -32,7 +32,7 @@ jobs:
         docker-compose build
     - name: Compose run and test
       run: |
-        docker-compose -f traefik-network-compose.yml up 
+        docker network create traefik
         docker-compose run --rm web bash -c "python wait_for_postgres.py &&
                                              ./manage.py migrate &&
                                              ./manage.py test"
