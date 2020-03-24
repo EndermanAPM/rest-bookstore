@@ -24,7 +24,7 @@ SECRET_KEY = '%pq0&v!9b^d!&sh)0nrqgx27z(ochxhhbcd3agssje@=87k*0f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["taclia.acmotos.com"]
+ALLOWED_HOSTS = ["taclia.acmotos.com", "epic.acmotos.com"]
 
 # Application definition
 
