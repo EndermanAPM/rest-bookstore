@@ -1,5 +1,4 @@
 from django.db.transaction import atomic
-from drf_nested_serializer import NestedModelSerializer
 from rest_framework import serializers
 from .models import *
 
