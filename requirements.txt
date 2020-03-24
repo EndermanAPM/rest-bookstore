@@ -1,5 +1,5 @@
 psycopg2
 django
-django-filter
+django-filter==2.2.0
 djangorestframework
 djangorestframework-simplejwt
