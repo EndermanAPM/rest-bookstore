@@ -2,8 +2,8 @@ import os
 import logging
 from time import time, sleep
 import psycopg2
-check_timeout = os.getenv("POSTGRES_CHECK_TIMEOUT", 30)
-check_interval = os.getenv("POSTGRES_CHECK_INTERVAL", 1)
+check_timeout = int(os.getenv("POSTGRES_CHECK_TIMEOUT", 30))
+check_interval = int(os.getenv("POSTGRES_CHECK_INTERVAL", 1))
 interval_unit = "second" if check_interval == 1 else "seconds"
 config = {
     "dbname": os.getenv("POSTGRES_DB", "bookstore"),
