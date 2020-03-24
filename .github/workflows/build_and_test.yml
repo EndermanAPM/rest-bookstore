@@ -33,4 +33,5 @@ jobs:
     - name: Compose run and test
       run: |
         docker-compose run --rm web bash -c "python wait_for_postgres.py &&
-                                         ./manage.py test"
+                                             ./manage.py migrate &&
+                                             ./manage.py test"
