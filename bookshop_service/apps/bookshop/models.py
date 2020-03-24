@@ -25,6 +25,11 @@ class Genre(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['name'], name='unique_genre_name_constraint'),
+        ]
+
 
 class Book(models.Model):
     name = models.CharField(max_length=30)
@@ -50,3 +55,7 @@ class OrderBookQuantity(models.Model):
     order = models.ForeignKey(Order, CASCADE, "purchased_books")
     book = models.ForeignKey(Book, CASCADE)
     quantity = models.IntegerField()
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['id', 'order', 'book'], name='unique_book_by_order_constraint'),
+        ]
