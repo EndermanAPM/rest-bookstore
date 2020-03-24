@@ -1,3 +1,5 @@
+![Python application](https://github.com/EndermanAPM/rest-bookstore/workflows/Python%20application/badge.svg)
+
 # Notas:  
 Changed 1:n book-order relationship to n:m to allow multiple books on a single purchase.
 Also added status, order total and date to order. (VAT ignored)  
@@ -17,10 +19,11 @@ The Order endpoint returns and allows to post the nested OrderBook(s).
 
 ## Missing features
 - Calculated purchase total
+- Proper logging
 
 ## Todo:
 - tests
-- ci
+- ci (development)
 - dockerization
 - pyup
 - ssl?
