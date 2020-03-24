@@ -4,7 +4,9 @@
 Changed 1:n book-order relationship to n:m to allow multiple books on a single purchase.
 Also added status, order total and date to order. (VAT ignored)  
 Stock merged into books because it doesn't provide additional fields to books.  
-The Order endpoint returns and allows to post the nested OrderBook(s). 
+The Order endpoint returns and allows to post the nested OrderBook(s).  
+This api is in no way production ready, starting with secret management, no logging, production server,
+persistence of database, debug mode on.
 
 ## Additional features:
 - Git/Github repository
@@ -16,6 +18,8 @@ The Order endpoint returns and allows to post the nested OrderBook(s).
 - jwt (Instead of basic auth) **BASIC AUTH WILL NOT WORK!**
 - Detailed view on order (with purchased books)
 - Hyperlinked api
+- dockerization
+- Ci (images being build and tested every commit by Github actions)
 
 ## Missing features
 - Calculated purchase total
@@ -23,8 +27,6 @@ The Order endpoint returns and allows to post the nested OrderBook(s).
 
 ## Todo:
 - tests
-- ci (development)
-- dockerization
 - pyup
 - ssl?
 
