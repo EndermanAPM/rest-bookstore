@@ -46,7 +46,7 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, PROTECT)
     STATUS = (
         ('NEW', 'New Order'),
-        ('PAID', 'Paid'),
+        ('PAID', 'Paid Order'),
     )
     status = models.CharField(
         max_length=32,
