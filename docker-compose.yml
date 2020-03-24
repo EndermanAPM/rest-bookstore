@@ -11,6 +11,8 @@ services:
     restart: always
     image: web
     build: ./
+    environment:
+      - POSTGRES_HOST=postgres
     command: >
       bash -c "python wait_for_postgres.py &&
                ./manage.py migrate &&

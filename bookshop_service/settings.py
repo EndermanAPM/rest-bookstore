@@ -73,13 +73,14 @@ WSGI_APPLICATION = 'bookshop_service.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bookstore',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'NAME': os.getenv("POSTGRES_DB", "bookstore"),
+        'USER': os.getenv("POSTGRES_USER", "postgres"),
+        'PASSWORD': os.getenv("POSTGRES_USER", "postgres"),
+        'HOST': os.getenv('POSTGRES_HOST', "localhost"),
         'PORT': ''  # set to empty string for default
     }
 }
