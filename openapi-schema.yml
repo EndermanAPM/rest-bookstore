@@ -1,0 +1,1828 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/customers/:
+    get:
+      operationId: listCustomers
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+                        id:
+                          type: integer
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 30
+                        birth_date:
+                          type: string
+                          format: date
+                          nullable: true
+                        register_date:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        phone:
+                          type: string
+                          maxLength: 15
+                        fidelity_points:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                      required:
+                      - name
+                      - phone
+          description: ''
+    post:
+      operationId: createCustomer
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id001
+              properties:
+                name:
+                  type: string
+                  maxLength: 30
+                birth_date:
+                  type: string
+                  format: date
+                  nullable: true
+                phone:
+                  type: string
+                  maxLength: 15
+                fidelity_points:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: -2147483648
+              required:
+              - name
+              - phone
+          application/x-www-form-urlencoded:
+            schema: *id001
+          multipart/form-data:
+            schema: *id001
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                  birth_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  register_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  phone:
+                    type: string
+                    maxLength: 15
+                  fidelity_points:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                required:
+                - name
+                - phone
+          description: ''
+  /api/customers/{id}/:
+    get:
+      operationId: retrieveCustomer
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this customer.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                  birth_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  register_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  phone:
+                    type: string
+                    maxLength: 15
+                  fidelity_points:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                required:
+                - name
+                - phone
+          description: ''
+    put:
+      operationId: updateCustomer
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this customer.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id002
+              properties:
+                name:
+                  type: string
+                  maxLength: 30
+                birth_date:
+                  type: string
+                  format: date
+                  nullable: true
+                phone:
+                  type: string
+                  maxLength: 15
+                fidelity_points:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: -2147483648
+              required:
+              - name
+              - phone
+          application/x-www-form-urlencoded:
+            schema: *id002
+          multipart/form-data:
+            schema: *id002
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                  birth_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  register_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  phone:
+                    type: string
+                    maxLength: 15
+                  fidelity_points:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                required:
+                - name
+                - phone
+          description: ''
+    patch:
+      operationId: partial_updateCustomer
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this customer.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id003
+              properties:
+                name:
+                  type: string
+                  maxLength: 30
+                birth_date:
+                  type: string
+                  format: date
+                  nullable: true
+                phone:
+                  type: string
+                  maxLength: 15
+                fidelity_points:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: -2147483648
+          application/x-www-form-urlencoded:
+            schema: *id003
+          multipart/form-data:
+            schema: *id003
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                  birth_date:
+                    type: string
+                    format: date
+                    nullable: true
+                  register_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  phone:
+                    type: string
+                    maxLength: 15
+                  fidelity_points:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                required:
+                - name
+                - phone
+          description: ''
+    delete:
+      operationId: destroyCustomer
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this customer.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/genres/:
+    get:
+      operationId: listGenres
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+                        id:
+                          type: integer
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 30
+                      required:
+                      - name
+          description: ''
+    post:
+      operationId: createGenre
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id004
+              properties:
+                name:
+                  type: string
+                  maxLength: 30
+              required:
+              - name
+          application/x-www-form-urlencoded:
+            schema: *id004
+          multipart/form-data:
+            schema: *id004
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                required:
+                - name
+          description: ''
+  /api/genres/{id}/:
+    get:
+      operationId: retrieveGenre
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this genre.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                required:
+                - name
+          description: ''
+    put:
+      operationId: updateGenre
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this genre.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id005
+              properties:
+                name:
+                  type: string
+                  maxLength: 30
+              required:
+              - name
+          application/x-www-form-urlencoded:
+            schema: *id005
+          multipart/form-data:
+            schema: *id005
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                required:
+                - name
+          description: ''
+    patch:
+      operationId: partial_updateGenre
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this genre.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id006
+              properties:
+                name:
+                  type: string
+                  maxLength: 30
+          application/x-www-form-urlencoded:
+            schema: *id006
+          multipart/form-data:
+            schema: *id006
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                required:
+                - name
+          description: ''
+    delete:
+      operationId: destroyGenre
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this genre.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/books/:
+    get:
+      operationId: listBooks
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+                        id:
+                          type: integer
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 30
+                        available_stock:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        price:
+                          type: number
+                          multipleOf: 0.01
+                          maximum: 10000
+                          minimum: -10000
+                        register_date:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        genre:
+                          type: string
+                          nullable: true
+                      required:
+                      - name
+                      - available_stock
+                      - price
+          description: ''
+    post:
+      operationId: createBook
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id007
+              properties:
+                name:
+                  type: string
+                  maxLength: 30
+                available_stock:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: -2147483648
+                price:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 10000
+                  minimum: -10000
+                genre:
+                  type: string
+                  nullable: true
+              required:
+              - name
+              - available_stock
+              - price
+          application/x-www-form-urlencoded:
+            schema: *id007
+          multipart/form-data:
+            schema: *id007
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                  available_stock:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000
+                    minimum: -10000
+                  register_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  genre:
+                    type: string
+                    nullable: true
+                required:
+                - name
+                - available_stock
+                - price
+          description: ''
+  /api/books/{id}/:
+    get:
+      operationId: retrieveBook
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this book.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                  available_stock:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000
+                    minimum: -10000
+                  register_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  genre:
+                    type: string
+                    nullable: true
+                required:
+                - name
+                - available_stock
+                - price
+          description: ''
+    put:
+      operationId: updateBook
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this book.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id008
+              properties:
+                name:
+                  type: string
+                  maxLength: 30
+                available_stock:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: -2147483648
+                price:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 10000
+                  minimum: -10000
+                genre:
+                  type: string
+                  nullable: true
+              required:
+              - name
+              - available_stock
+              - price
+          application/x-www-form-urlencoded:
+            schema: *id008
+          multipart/form-data:
+            schema: *id008
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                  available_stock:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000
+                    minimum: -10000
+                  register_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  genre:
+                    type: string
+                    nullable: true
+                required:
+                - name
+                - available_stock
+                - price
+          description: ''
+    patch:
+      operationId: partial_updateBook
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this book.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id009
+              properties:
+                name:
+                  type: string
+                  maxLength: 30
+                available_stock:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: -2147483648
+                price:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 10000
+                  minimum: -10000
+                genre:
+                  type: string
+                  nullable: true
+          application/x-www-form-urlencoded:
+            schema: *id009
+          multipart/form-data:
+            schema: *id009
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 30
+                  available_stock:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000
+                    minimum: -10000
+                  register_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  genre:
+                    type: string
+                    nullable: true
+                required:
+                - name
+                - available_stock
+                - price
+          description: ''
+    delete:
+      operationId: destroyBook
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this book.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/orders/:
+    get:
+      operationId: listOrders
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: status
+        required: false
+        in: query
+        description: status
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+                        id:
+                          type: integer
+                          readOnly: true
+                        status:
+                          enum:
+                          - NEW
+                          - PAID
+                        total:
+                          type: number
+                          multipleOf: 0.01
+                          maximum: 10000
+                          minimum: -10000
+                        purchase_date:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        customer:
+                          type: string
+                      required:
+                      - total
+                      - customer
+          description: ''
+    post:
+      operationId: createOrder
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id010
+              properties:
+                status:
+                  enum:
+                  - NEW
+                  - PAID
+                total:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 10000
+                  minimum: -10000
+                customer:
+                  type: string
+              required:
+              - total
+              - customer
+          application/x-www-form-urlencoded:
+            schema: *id010
+          multipart/form-data:
+            schema: *id010
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  status:
+                    enum:
+                    - NEW
+                    - PAID
+                  total:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000
+                    minimum: -10000
+                  purchase_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  customer:
+                    type: string
+                required:
+                - total
+                - customer
+          description: ''
+  /api/orders/{id}/:
+    get:
+      operationId: retrieveOrder
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order.
+        schema:
+          type: string
+      - name: status
+        required: false
+        in: query
+        description: status
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  purchased_books:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+                        id:
+                          type: integer
+                          readOnly: true
+                        quantity:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        book:
+                          type: string
+                      required:
+                      - quantity
+                      - book
+                    readOnly: true
+                  status:
+                    enum:
+                    - NEW
+                    - PAID
+                  total:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000
+                    minimum: -10000
+                  purchase_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  customer:
+                    type: string
+                required:
+                - total
+                - customer
+          description: ''
+    put:
+      operationId: updateOrder
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order.
+        schema:
+          type: string
+      - name: status
+        required: false
+        in: query
+        description: status
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id011
+              properties:
+                status:
+                  enum:
+                  - NEW
+                  - PAID
+                total:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 10000
+                  minimum: -10000
+                customer:
+                  type: string
+              required:
+              - total
+              - customer
+          application/x-www-form-urlencoded:
+            schema: *id011
+          multipart/form-data:
+            schema: *id011
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  status:
+                    enum:
+                    - NEW
+                    - PAID
+                  total:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000
+                    minimum: -10000
+                  purchase_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  customer:
+                    type: string
+                required:
+                - total
+                - customer
+          description: ''
+    patch:
+      operationId: partial_updateOrder
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order.
+        schema:
+          type: string
+      - name: status
+        required: false
+        in: query
+        description: status
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id012
+              properties:
+                status:
+                  enum:
+                  - NEW
+                  - PAID
+                total:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 10000
+                  minimum: -10000
+                customer:
+                  type: string
+          application/x-www-form-urlencoded:
+            schema: *id012
+          multipart/form-data:
+            schema: *id012
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  status:
+                    enum:
+                    - NEW
+                    - PAID
+                  total:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 10000
+                    minimum: -10000
+                  purchase_date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  customer:
+                    type: string
+                required:
+                - total
+                - customer
+          description: ''
+    delete:
+      operationId: destroyOrder
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order.
+        schema:
+          type: string
+      - name: status
+        required: false
+        in: query
+        description: status
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/orderbook/:
+    get:
+      operationId: listOrderBookQuantitys
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        url:
+                          type: string
+                          readOnly: true
+                        id:
+                          type: integer
+                          readOnly: true
+                        quantity:
+                          type: integer
+                          maximum: 2147483647
+                          minimum: -2147483648
+                        order:
+                          type: string
+                        book:
+                          type: string
+                      required:
+                      - quantity
+                      - order
+                      - book
+          description: ''
+    post:
+      operationId: createOrderBookQuantity
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id013
+              properties:
+                quantity:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: -2147483648
+                order:
+                  type: string
+                book:
+                  type: string
+              required:
+              - quantity
+              - order
+              - book
+          application/x-www-form-urlencoded:
+            schema: *id013
+          multipart/form-data:
+            schema: *id013
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  order:
+                    type: string
+                  book:
+                    type: string
+                required:
+                - quantity
+                - order
+                - book
+          description: ''
+  /api/orderbook/{id}/:
+    get:
+      operationId: retrieveOrderBookQuantity
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order book quantity.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  order:
+                    type: string
+                  book:
+                    type: string
+                required:
+                - quantity
+                - order
+                - book
+          description: ''
+    put:
+      operationId: updateOrderBookQuantity
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order book quantity.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id014
+              properties:
+                quantity:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: -2147483648
+                order:
+                  type: string
+                book:
+                  type: string
+              required:
+              - quantity
+              - order
+              - book
+          application/x-www-form-urlencoded:
+            schema: *id014
+          multipart/form-data:
+            schema: *id014
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  order:
+                    type: string
+                  book:
+                    type: string
+                required:
+                - quantity
+                - order
+                - book
+          description: ''
+    patch:
+      operationId: partial_updateOrderBookQuantity
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order book quantity.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id015
+              properties:
+                quantity:
+                  type: integer
+                  maximum: 2147483647
+                  minimum: -2147483648
+                order:
+                  type: string
+                book:
+                  type: string
+          application/x-www-form-urlencoded:
+            schema: *id015
+          multipart/form-data:
+            schema: *id015
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  url:
+                    type: string
+                    readOnly: true
+                  id:
+                    type: integer
+                    readOnly: true
+                  quantity:
+                    type: integer
+                    maximum: 2147483647
+                    minimum: -2147483648
+                  order:
+                    type: string
+                  book:
+                    type: string
+                required:
+                - quantity
+                - order
+                - book
+          description: ''
+    delete:
+      operationId: destroyOrderBookQuantity
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this order book quantity.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api/token/:
+    post:
+      operationId: CreateTokenObtainPair
+      description: 'Takes a set of user credentials and returns an access and refresh
+        JSON web
+
+        token pair to prove the authentication of those credentials.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id016
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                  writeOnly: true
+              required:
+              - username
+              - password
+          application/x-www-form-urlencoded:
+            schema: *id016
+          multipart/form-data:
+            schema: *id016
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  username:
+                    type: string
+                required:
+                - username
+          description: ''
+  /api/token/refresh/:
+    post:
+      operationId: CreateTokenRefresh
+      description: 'Takes a refresh type JSON web token and returns an access type
+        JSON web
+
+        token if the refresh token is valid.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id017
+              properties:
+                refresh:
+                  type: string
+              required:
+              - refresh
+          application/x-www-form-urlencoded:
+            schema: *id017
+          multipart/form-data:
+            schema: *id017
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  refresh:
+                    type: string
+                required:
+                - refresh
+          description: ''

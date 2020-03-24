@@ -3,3 +3,5 @@ django
 django-filter
 djangorestframework
 djangorestframework-simplejwt
+pyyaml
+uritemplate

@@ -36,7 +36,7 @@ CDN will cache almost nothing (because most of the content is dynamic) but CF Ar
 - CDN (Cloudflare)
 - SSL
 - pyup (dependency updater)
-
+- openapi schema
 
 ## Missing
 - Logging
