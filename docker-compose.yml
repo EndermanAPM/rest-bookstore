@@ -23,3 +23,7 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
+    labels:
+      - traefik.http.routers.web-router.rule=Host(`taclia.acmotos.com`)
+      - traefik.http.routers.web-router.entryPoints=websecure
+      - traefik.http.routers.web-router.tls=true
