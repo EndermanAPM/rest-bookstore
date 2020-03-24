@@ -1,0 +1,9 @@
+[run]
+branch = True
+omit = *migrations*,
+       *urls*,
+       *test*,
+       *admin*,
+       ./manage.py,
+       ./bookshop_service/*,
+       *__init__*
