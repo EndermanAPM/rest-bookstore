@@ -1,3 +1,4 @@
+from django.db.transaction import atomic
 from drf_nested_serializer import NestedModelSerializer
 from rest_framework import serializers
 from .models import *
@@ -43,6 +44,7 @@ class OrderSerializer(HyperlinkedModelSerializerWithId):
         model = Order
         fields = "__all__"
 
+    @atomic
     def create(self, validated_data):
         validated_purchased_books = validated_data.pop('purchased_books')
         order = Order.objects.create(**validated_data)
