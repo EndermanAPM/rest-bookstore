@@ -2,6 +2,6 @@ psycopg2==2.8.6
 django==3.2.2
 django-filter==2.4.0
 djangorestframework==3.12.4
-djangorestframework-simplejwt
+djangorestframework-simplejwt==4.6.0
 pyyaml
 uritemplate
