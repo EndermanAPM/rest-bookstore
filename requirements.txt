@@ -3,5 +3,5 @@ django==3.2.8
 django-filter==21.1
 djangorestframework==3.12.4
 djangorestframework-simplejwt==4.8.0
-pyyaml
+pyyaml==5.4.1
 uritemplate
