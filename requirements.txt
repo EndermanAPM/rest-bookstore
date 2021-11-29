@@ -1,6 +1,6 @@
 psycopg2==2.9.2
 django==3.2.9
-django-filter
+django-filter==21.1
 djangorestframework
 djangorestframework-simplejwt
 pyyaml
