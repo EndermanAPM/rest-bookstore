@@ -3,5 +3,5 @@ django
 django-filter
 djangorestframework
 djangorestframework-simplejwt
-pyyaml
+pyyaml==6.0
 uritemplate
