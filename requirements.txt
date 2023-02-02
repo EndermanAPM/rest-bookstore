@@ -4,4 +4,4 @@ django-filter
 djangorestframework
 djangorestframework-simplejwt
 pyyaml
-uritemplate
+uritemplate==4.1.1
